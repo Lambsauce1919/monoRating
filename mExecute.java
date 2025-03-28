@@ -42,16 +42,10 @@ public class mExecute {
 			 scoreCount += 1;
 		 }
 		 else {
-			 System.out.println("ERROR");
-		 }
-			
-		 
+			 System.out.println("ERROR");}}
 	
-	}	
-
-
+// Main code that runs, the lean cut of steak
 public static void main(String[] args) {
-	
 	Scanner scn = new Scanner(System.in); // scanner 
 	mExecute exInt = new mExecute(); // object  
 	
@@ -78,10 +72,10 @@ public static void main(String[] args) {
 				System.out.println("You have entered an invalid option, values 0-100 are valid.");
 				skLevels[i] = scn.nextInt(); // rescan to ensure correct value is put
 			}
-			System.out.println("Have you mastered this skill? Respond with: true / false");
+			System.out.println("Have you mastered this skill? Respond with: true / false"); // mastery prompt
 			String booleanInput = scn.next();
 			
-			while (!booleanInput.equalsIgnoreCase("true") && !booleanInput.equalsIgnoreCase("false")) {
+			while (!booleanInput.equalsIgnoreCase("true") && !booleanInput.equalsIgnoreCase("false")) { // makes sure the right strings are input, if not program will not continue until conditions are met.
 				System.out.println("Enter a valid response as instructed; Respond with: true / false");
 				booleanInput = scn.next(); }
 			
@@ -95,9 +89,9 @@ public static void main(String[] args) {
 			} else {
 				System.out.println("You do not qualify for additional points.\n"); } }
 
-System.out.println(exInt.userData.toString());
+System.out.println(exInt.userData.toString()); // ensure correct values are printing (debug)
 
-for (levelNames level : levelNames.values()) {
+for (levelNames level : levelNames.values()) { // repeats the switch below until all instances of the enum have been processed
 	
 	 switch (level) {
 	 case MINING: // Runs through a set of pre-defined ranges to determine how versed the user is in a particular skill set
@@ -143,12 +137,17 @@ if (exInt.scoreCount == 56) {
 } else if (exInt.scoreCount < 56 && exInt.scoreCount > 40) {
 	System.out.println("You have a well rounded character, you're way up there, leagues above a majority of players.");
 }
-else {
-	System.out.println("null");
+else if (exInt.scoreCount <= 40 && exInt.scoreCount >= 28) {
+	System.out.println("You exceed above most people overall, do you have too much time on your hands?");
 }
+else if (exInt.scoreCount > 0 && exInt.scoreCount <28) {
+	System.out.println("You're pretty average around here, nothing too notable about you.");
+}
+scn.close(); // closed scanner to prevent resource leakage. 
 	}{
 
 }
+
 }
 
 	
