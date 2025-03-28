@@ -1,0 +1,6 @@
+package monoRating;
+
+public enum levelNames {
+		MINING, FISHING, CHEMISTRY, COOKING, WOODCUTTING, CRAFTING, METALWORKING, FARMING
+		}
+
