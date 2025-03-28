@@ -166,12 +166,8 @@ else if (exInt.scoreCount > 0 && exInt.scoreCount <28) {
 
 // Add this block to pause the console
 System.out.println("\nPress Enter to exit...");
-try {
-    System.in.read(); // Wait for user to press Enter
-} catch (Exception e) {
-    e.printStackTrace();
-}
-	
+scn.nextLine();
+scn.nextLine();
 }
 
 }
