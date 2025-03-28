@@ -5,11 +5,6 @@ public class mExecute {
 	uData userData;
 // Globally defined variable(s)
 	int scoreCount = 0;
-	/*4 is perfect
-	 * 3 is nice
-	 * 2 is acceptable
-	 * 1 is poor
-	 */
 	
 	public mExecute() { // Call uData to other functions
 	userData = new uData();	
@@ -18,7 +13,19 @@ public class mExecute {
 	public void prof(String nName, int nTurn) {
 		int i = nTurn;
 		String level = nName;
-		 if (userData.skLevels[i] >= 75 && userData.skLevels[i] <= 100) {
+		if (userData.skLevels[i] >= 175 && userData.skLevels[i] <= 200) {
+			 System.out.println("You clearly have no life, WOW " + level + ", I don't know if I should congratulate or be concerned for you. \n");
+			 scoreCount += 7;
+		 }
+		else if (userData.skLevels[i] >= 150 && userData.skLevels[i] < 175) {
+			 System.out.println("Holy, you've put some hours in I see" + level + ", do you have a life? \n");
+			 scoreCount += 6;
+		 }
+		else if (userData.skLevels[i] >= 100 && userData.skLevels[i] < 150) {
+			 System.out.println("You excell above most people in " + level + ", amazing work there! \n");
+			 scoreCount += 5;
+		 }
+		else if (userData.skLevels[i] >= 75 && userData.skLevels[i] < 100) {
 			 System.out.println("You show excellence in " + level + ", good job. \n");
 			 scoreCount += 4;
 		 }
@@ -31,13 +38,15 @@ public class mExecute {
 			 scoreCount += 2;
 		 }
 		 else if (userData.skLevels[i] < 25 && userData.skLevels[i] >= 0 ){
-			 System.out.println("You're inexperienced in " + level + ", I suggest you look at the guides on Discord \n https://discord.com/channels/250412667649392642/1352523490418360341");
+			 System.out.println("You're inexperienced in " + level + ", I suggest you look at the guides on Discord\n https://discord.com/channels/250412667649392642/1352523490418360341\n");
 			 scoreCount += 1;
 		 }
 		 else {
 			 System.out.println("ERROR");
 		 }
 			
+		 
+	
 	}	
 
 
@@ -46,11 +55,22 @@ public static void main(String[] args) {
 	Scanner scn = new Scanner(System.in); // scanner 
 	mExecute exInt = new mExecute(); // object  
 	
-	// Call method to access how many level integers exits
+	// Player enters their basic player and user information
+	System.out.println("Enter your Steam Name: ");
+	String steamName = scn.nextLine();
+	System.out.println("\nEnter your Character Name: ");
+	String characterName = scn.nextLine();
+	System.out.println("\nEnter your Player Level: ");
+	int playerLevel = scn.nextInt();
+	
+	// Sends user information back to uData class to be stored preferably privately, will look into.
+	exInt.userData.cData(steamName, characterName, playerLevel);
+	
+	// Call method to access how many level integers exits so they can be assigned in uData
 	int [] skLevels = exInt.userData.getSkillLevels();
 	
 	for (int i = 0; i < levelNames.values().length; ++i) { // Loop runs to store skill level(s)
-		
+		boolean isMastered = false;
 			System.out.println("Enter your level for " + levelNames.values()[i] + ": "); // Prints prompt according to respective skill input
 			skLevels[i] = scn.nextInt(); // scans for skill integer
 			
@@ -58,7 +78,24 @@ public static void main(String[] args) {
 				System.out.println("You have entered an invalid option, values 0-100 are valid.");
 				skLevels[i] = scn.nextInt(); // rescan to ensure correct value is put
 			}
-		}
+			System.out.println("Have you mastered this skill? Respond with: true / false");
+			String booleanInput = scn.next();
+			
+			while (!booleanInput.equalsIgnoreCase("true") && !booleanInput.equalsIgnoreCase("false")) {
+				System.out.println("Enter a valid response as instructed; Respond with: true / false");
+				booleanInput = scn.next(); }
+			
+			if (booleanInput.equalsIgnoreCase("True")){
+				isMastered = true;
+			} else if (booleanInput.equalsIgnoreCase("False")) {
+				isMastered = false;
+			} if (isMastered) {
+				System.out.println("Additional points will be added to your score count.\n");
+				skLevels[i] += 100; 
+			} else {
+				System.out.println("You do not qualify for additional points.\n"); } }
+
+System.out.println(exInt.userData.toString());
 
 for (levelNames level : levelNames.values()) {
 	
@@ -100,12 +137,19 @@ for (levelNames level : levelNames.values()) {
 		break;
 		 
 	 }
+}	
+if (exInt.scoreCount == 56) {
+	System.out.println("You've achieved a perfect score, congratulations to mastering your character on Monolith Server!");	
+} else if (exInt.scoreCount < 56 && exInt.scoreCount > 40) {
+	System.out.println("You have a well rounded character, you're way up there, leagues above a majority of players.");
 }
-	
-		
-	}
+else {
+	System.out.println("null");
 }
+	}{
 
+}
+}
 
 	
 	
