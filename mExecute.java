@@ -1,5 +1,6 @@
 package monoRating;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 public class mExecute {
 // Collect MonolithServers character information
 	uData userData;
@@ -18,7 +19,7 @@ public class mExecute {
 			 scoreCount += 7;
 		 }
 		else if (userData.skLevels[i] >= 150 && userData.skLevels[i] < 175) {
-			 System.out.println("Holy, you've put some hours in I see" + level + ", do you have a life? \n");
+			 System.out.println("Holy, you've put some hours into " + level + " I see, do you have a life? \n");
 			 scoreCount += 6;
 		 }
 		else if (userData.skLevels[i] >= 100 && userData.skLevels[i] < 150) {
@@ -49,13 +50,23 @@ public static void main(String[] args) {
 	Scanner scn = new Scanner(System.in); // scanner 
 	mExecute exInt = new mExecute(); // object  
 	
-	// Player enters their basic player and user information
-	System.out.println("Enter your Steam Name: ");
+	int playerLevel = 0; // declares player level to be 0 initially.
+	
+	
+	System.out.println("Enter your Steam Name: "); // Player enters their basic player and user information
 	String steamName = scn.nextLine();
+
 	System.out.println("\nEnter your Character Name: ");
 	String characterName = scn.nextLine();
-	System.out.println("\nEnter your Player Level: ");
-	int playerLevel = scn.nextInt();
+	
+	boolean validInput = false;
+	while (!validInput) {
+		System.out.println("\nEnter your Player Level: ");
+		try { 
+			playerLevel = scn.nextInt();
+			validInput = true;} catch (InputMismatchException e) { System.out.println("Invalid input, you may only enter a number."); scn.next();} }
+	
+	
 	
 	// Sends user information back to uData class to be stored preferably privately, will look into.
 	exInt.userData.cData(steamName, characterName, playerLevel);
@@ -65,8 +76,15 @@ public static void main(String[] args) {
 	
 	for (int i = 0; i < levelNames.values().length; ++i) { // Loop runs to store skill level(s)
 		boolean isMastered = false;
-			System.out.println("Enter your level for " + levelNames.values()[i] + ": "); // Prints prompt according to respective skill input
-			skLevels[i] = scn.nextInt(); // scans for skill integer
+			
+			boolean validSkillInput = false;
+			
+			while (!validSkillInput)
+			{
+				System.out.println("Enter your level for " + levelNames.values()[i] + ": "); // Prints prompt according to respective skill input
+			try {
+				skLevels[i] = scn.nextInt();
+				validSkillInput = true;} catch (InputMismatchException e) {System.out.println("Invalid input, you may only enter a number.\n"); scn.next();}}
 			
 			while (skLevels[i] > 100 || skLevels[i] < 0) { // check to make sure that a valid option is input
 				System.out.println("You have entered an invalid option, values 0-100 are valid.");
