@@ -14,7 +14,7 @@ public class mExecute {
 		int i = nTurn;
 		String level = nName;
 		if (userData.skLevels[i] >= 175 && userData.skLevels[i] <= 200) {
-			 System.out.println("You clearly have no life, WOW " + level + ", I don't know if I should congratulate or be concerned for you. \n");
+			 System.out.println("You clearly have no life, if you got this far in " + level + ", I don't know if I should congratulate or be concerned for you. \n");
 			 scoreCount += 7;
 		 }
 		else if (userData.skLevels[i] >= 150 && userData.skLevels[i] < 175) {
@@ -129,6 +129,7 @@ for (levelNames level : levelNames.values()) { // repeats the switch below until
 	default:
 		System.out.println("INVALID: ERROR");
 		break;
+		
 		 
 	 }
 }	
@@ -143,9 +144,16 @@ else if (exInt.scoreCount <= 40 && exInt.scoreCount >= 28) {
 else if (exInt.scoreCount > 0 && exInt.scoreCount <28) {
 	System.out.println("You're pretty average around here, nothing too notable about you.");
 }
-scn.close(); // closed scanner to prevent resource leakage. 
-	}{
 
+
+// Add this block to pause the console
+System.out.println("\nPress Enter to exit...");
+try {
+    System.in.read(); // Wait for user to press Enter
+} catch (Exception e) {
+    e.printStackTrace();
+}
+	
 }
 
 }
